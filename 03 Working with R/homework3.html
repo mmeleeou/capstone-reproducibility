@@ -137,6 +137,7 @@ Check the structure of the data.
 ##  $ major       : Factor w/ 2 levels &quot;business&quot;,&quot;psychology&quot;: 2 2 2 2 2 2 2 2 2 2 ...
 ##  $ year        : Factor w/ 4 levels &quot;freshman&quot;,&quot;junior&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ conservatism: num  44.5 38.6 34.2 32.2 42.3 ...</code></pre>
+<p>‘data.frame’: 100 obs. of 3 variables: $ major : Factor w/ 2 levels “business”,“psychology”: 2 2 2 2 2 2 2 2 2 2 … $ year : Factor w/ 4 levels “freshman”,“junior”,..: 1 1 1 1 1 1 1 1 1 1 … $ conservatism: num 44.5 38.6 34.2 32.2 42.3 …</p>
 <!--
 Find the mean, median, and standard deviation using the sd() function
 for the overall level of conservatism.
@@ -147,16 +148,17 @@ for the overall level of conservatism.
 <pre><code>## [1] 53.83231</code></pre>
 <pre class="r"><code>var(dat$conservatism)</code></pre>
 <pre><code>## [1] 390.3617</code></pre>
-<!--
+<p>mean(dat<span class="math inline">\(conservatism) [1] 52.29458 median(dat\)</span>conservatism) [1] 53.83231 var(dat$conservatism) [1] 390.3617 <!--
 Find the mean level of support for freshmen only.
--->
+--></p>
 <pre class="r"><code>mean(dat$conservatism[dat$year==&quot;freshman&quot;])</code></pre>
 <pre><code>## [1] 47.50033</code></pre>
-<!--
+<p>[1] 47.50033 <!--
 Find the mean level of support for male business students only.
--->
+--></p>
 <pre class="r"><code>mean(dat$conservatism[dat$year==&quot;sophomore&quot; &amp; dat$major==&quot;business&quot;])</code></pre>
 <pre><code>## [1] 61.60146</code></pre>
+<p>[1] 61.60146</p>
 </div>
 
 
