@@ -18,18 +18,25 @@ Read in the homework4.csv data. For each of the following steps you
 should preface your R commands with some plain English explanation.
 -->
 
-
+```{r}
+dat<-read.csv("homework4.csv")
+```
 
 <!--
 Check the structure of the data.
 -->
 
-
+```{r}
+str(dat)
+```
 
 <!--
 Create a table that shows how many people fell into each category.
 -->
 
+```{r}
+table(dat$condition, dat$agreement)
+```
 
 
 <!--
@@ -40,4 +47,6 @@ statement that supports your interpretation. As there's no way to
 insert the chi-square symbol, you can just use chi-square instead
 (see example4.Rmd).
 -->
-
+```{r}
+chisq.test(dat$condition,dat$agreement)
+```
