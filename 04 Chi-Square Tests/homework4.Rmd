@@ -35,7 +35,7 @@ Create a table that shows how many people fell into each category.
 -->
 
 ```{r}
-table(dat$condition, dat$agreement)
+table(dat$agreement, dat$condition)
 ```
 
 
@@ -48,5 +48,5 @@ insert the chi-square symbol, you can just use chi-square instead
 (see example4.Rmd).
 -->
 ```{r}
-chisq.test(dat$condition,dat$agreement)
+chisq.test(dat$agreement,dat$condition)
 ```
