@@ -14,6 +14,7 @@ The data are fabricated and include the number of words per minute
 that people can type when listening to no music and when listening
 to heavy metal.
 -->
+The first step is to read in the data.
 ```{r}
 dat<-read.csv("homework5.csv")
 ```
@@ -22,10 +23,11 @@ dat<-read.csv("homework5.csv")
 <!--
 Check the structure of the data.
 -->
+The next step is to check out the structure
 ```{r}
 str(dat)
 ```
-
+As we can see dat is a data frame with two variables: music and wpm.
 
 <!--
 Find the mean words per minute for the two groups.
@@ -35,45 +37,56 @@ Find the mean words per minute for the two groups.
 mean(dat$wpm[dat$music=="metal"])
 mean(dat$wpm[dat$music=="none"])
 ```
-
+By looking at the means it appears that the metal group
+had more words per minute than the none group.
 <!--
 Run an independent t-test to determine if the mean wpm for the
 no music group is different from the mean wpm from heavy metal
 group. Interpret the results of your analysis after you run it.
 -->
-
+Now I'll perform an independent t-test to see if my intuition was
+correct.
 ```{r}
 t.test(dat$wpm[dat$music=="none"],
        dat$wpn[dat$music=="metal"],
        var.equal=TRUE)
 ```
-
+Examining the results of our t-test we can see that 
+the experimental group performed the task quicker than individuals
+in the control group, t(31) = 26, p = 2.2e-16.
 <!--
 Run another independent t-test with the alternative hypothesis that
 the heavy metal group types faster than the no music group. Interpret
 the results of your analyses.
 -->
+Now, I'll run an independent t-test with the alternative hypothesis
+that the heavy metal group types more than the no music group.
 ```{r}
 t.test(dat$wpm[dat$music=="none"],
        dat$wpm[dat$music=="metal"],
        var.equal=TRUE,
        alternative="greater")
 ```
-
+Examining the results of our t-test we can see that individuals in
+the heavy metal group typed more words than the no music group, t(62) = -2.3, p = 0.9885.
 
 <!--
 Create a bar graph of the data.
 -->
+In order to create a figure of the data, I need to load the
+ggplot2, gplots, and dplyr libraries.
 ```{r}
 library(ggplot2)
 library(gplots)
 library(dplyr)
 ```
+Next I need to use dplyr to summarize the data and find the means and
+standard errors of the means for the different groups.
 ```{r}
 temp<-dat%>%group_by(music)%>%
   summarize(means=mean(wpm), sems=sd(wpm)/sqrt(length(wpm)))
 ```
-
+Armed with the summarized data I can now create a figure of the data.
 ```{r}
 f<-ggplot(temp,aes(x=factor(music),y=means))+
   geom_bar(stat="identity", color="black",
@@ -112,9 +125,13 @@ f
 <!--
 Conduct and interpret a two-tailed paired t-test on the data.
 -->
+Now I will conduct a two-tailed paired t-test.
 ```{r}
 t.test(dat$wpm[dat$music=="none"],
        dat$wpm[dat$music=="metal"],
        var.equal=TRUE,
        paired=TRUE)
 ```
+Individuals in the heavy metal condition completed the task more
+quickly than individuals in the no music condition, t(31) = -12.2,
+p < 2.51e-13.

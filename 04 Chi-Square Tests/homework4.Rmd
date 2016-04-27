@@ -18,6 +18,7 @@ Read in the homework4.csv data. For each of the following steps you
 should preface your R commands with some plain English explanation.
 -->
 
+The first step is to read in the data.
 ```{r}
 dat<-read.csv("homework4.csv")
 ```
@@ -25,7 +26,7 @@ dat<-read.csv("homework4.csv")
 <!--
 Check the structure of the data.
 -->
-
+The next step is to check out the structure
 ```{r}
 str(dat)
 ```
@@ -33,7 +34,8 @@ str(dat)
 <!--
 Create a table that shows how many people fell into each category.
 -->
-
+Now I'll create a table that shows how many people fell into each
+category of agreement and condition.
 ```{r}
 table(dat$agreement, dat$condition)
 ```
@@ -47,6 +49,8 @@ statement that supports your interpretation. As there's no way to
 insert the chi-square symbol, you can just use chi-square instead
 (see example4.Rmd).
 -->
+Now we'll run a Chi-square test to determine whether the experimental conditions and agreement for a statement are related.
 ```{r}
 chisq.test(dat$agreement,dat$condition)
 ```
+According to the results of the Chi-square test, the experimental manipulation didn't affect how much people agreed with the statement, X^2(1) = 1.2, p = .26.

@@ -128,10 +128,12 @@ No Rchunk is needed to accomplish this.
 Read in the homework4.csv data. For each of the following steps you
 should preface your R commands with some plain English explanation.
 -->
+<p>The first step is to read in the data.</p>
 <pre class="r"><code>dat&lt;-read.csv(&quot;homework4.csv&quot;)</code></pre>
 <!--
 Check the structure of the data.
 -->
+<p>The next step is to check out the structure</p>
 <pre class="r"><code>str(dat)</code></pre>
 <pre><code>## 'data.frame':    80 obs. of  2 variables:
 ##  $ condition: Factor w/ 2 levels &quot;control&quot;,&quot;experimental&quot;: 2 1 2 1 2 1 2 1 2 1 ...
@@ -139,11 +141,12 @@ Check the structure of the data.
 <!--
 Create a table that shows how many people fell into each category.
 -->
-<pre class="r"><code>table(dat$condition, dat$agreement)</code></pre>
-<pre><code>##               
-##                no yes
-##   control      20  20
-##   experimental 14  26</code></pre>
+<p>Now I’ll create a table that shows how many people fell into each category of agreement and condition.</p>
+<pre class="r"><code>table(dat$agreement, dat$condition)</code></pre>
+<pre><code>##      
+##       control experimental
+##   no       20           14
+##   yes      20           26</code></pre>
 <!--
 Perform a chi-square test to determine whether or not the experimental
 conditions and agreement with a statement are independent or related.
@@ -152,12 +155,14 @@ statement that supports your interpretation. As there's no way to
 insert the chi-square symbol, you can just use chi-square instead
 (see example4.Rmd).
 -->
-<pre class="r"><code>chisq.test(dat$condition,dat$agreement)</code></pre>
+<p>Now we’ll run a Chi-square test to determine whether the experimental conditions and agreement for a statement are related.</p>
+<pre class="r"><code>chisq.test(dat$agreement,dat$condition)</code></pre>
 <pre><code>## 
 ##  Pearson's Chi-squared test with Yates' continuity correction
 ## 
-## data:  dat$condition and dat$agreement
+## data:  dat$agreement and dat$condition
 ## X-squared = 1.2788, df = 1, p-value = 0.2581</code></pre>
+<p>According to the results of the Chi-square test, the experimental manipulation didn’t a???ect how much people agreed with the statement, X^2(1) = 1.2, p = .26.</p>
 </div>
 
 
