@@ -34,8 +34,8 @@ Find the mean words per minute for the two groups.
 -->
 
 ```{r}
-mean(dat$wpm[dat$music=="metal"])
 mean(dat$wpm[dat$music=="none"])
+mean(dat$wpm[dat$music=="metal"])
 ```
 By looking at the means it appears that the metal group
 had more words per minute than the none group.
@@ -47,8 +47,8 @@ group. Interpret the results of your analysis after you run it.
 Now I'll perform an independent t-test to see if my intuition was
 correct.
 ```{r}
-t.test(dat$wpm[dat$music=="none"],
-       dat$wpn[dat$music=="metal"],
+t.test(dat$wpm[dat$music=="metal"],
+       dat$wpn[dat$music=="none"],
        var.equal=TRUE)
 ```
 Examining the results of our t-test we can see that 
@@ -62,8 +62,8 @@ the results of your analyses.
 Now, I'll run an independent t-test with the alternative hypothesis
 that the heavy metal group types more than the no music group.
 ```{r}
-t.test(dat$wpm[dat$music=="none"],
-       dat$wpm[dat$music=="metal"],
+t.test(dat$wpm[dat$music=="metal"],
+       dat$wpm[dat$music=="none"],
        var.equal=TRUE,
        alternative="greater")
 ```
@@ -91,11 +91,8 @@ Armed with the summarized data I can now create a figure of the data.
 f<-ggplot(temp,aes(x=factor(music),y=means))+
   geom_bar(stat="identity", color="black",
            fill=c("deepskyblue2", "deeppink"))+
-  geom_errorbar(aes(ymax=means+sems,
-                    ymin=means-sems),
-                width=.2)+
-  ggtitle("Response Times For the Groups")+
-  labs(x="Group", y="Response Time (ms)")+
+ geom_errorbar")+
+  labs(x="Group", y="Typing Speed (wpm)")+
   scale_x_discrete(breaks=c("metal","none"),
                    labels=c("metal","none"))+
   theme(plot.title=element_text(size=15,
@@ -127,8 +124,8 @@ Conduct and interpret a two-tailed paired t-test on the data.
 -->
 Now I will conduct a two-tailed paired t-test.
 ```{r}
-t.test(dat$wpm[dat$music=="none"],
-       dat$wpm[dat$music=="metal"],
+t.test(dat$wpm[dat$music=="metal"],
+       dat$wpm[dat$music=="none"],
        var.equal=TRUE,
        paired=TRUE)
 ```
